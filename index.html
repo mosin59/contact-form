@@ -1,41 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Me</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      padding: 40px;
+      margin: 0;
+      padding: 20px;
       background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
+
     form {
       background: #fff;
       padding: 20px;
+      width: 100%;
       max-width: 400px;
-      margin: auto;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+
     input, textarea, button {
       width: 100%;
       padding: 10px;
       margin: 8px 0;
       border: 1px solid #ccc;
       border-radius: 4px;
+      font-size: 1rem;
     }
+
     button {
       background-color: #4CAF50;
       color: white;
       font-weight: bold;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
+
     button:hover {
       background-color: #45a049;
     }
+
     h2 {
       text-align: center;
+      margin-top: 0;
     }
+
     #thank-you-message {
       display: none;
       text-align: center;
@@ -46,50 +65,52 @@
   </style>
 </head>
 <body>
-  <h2>Contact Me</h2>
-  
-  <form id="contact-form" action="https://formsubmit.co/mosindeutsch@gmail.com" method="POST">
-    <input type="hidden" name="_captcha" value="false">
-    
-    <!-- دیگر نیازی به _next نیست -->
+  <div>
+    <h2>Contact Me</h2>
 
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" placeholder="Your Message" required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
+    <form id="contact-form" action="https://formsubmit.co/mosindeutsch@gmail.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
 
-  <div id="thank-you-message">
-    ✅ Thank you for your message! We will get back to you soon.
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+
+    <div id="thank-you-message">
+      ✅ Thank you for your message! We will get back to you soon.
+    </div>
   </div>
 
   <script>
-    const form = document.getElementById('contact-form');
-    const thankYouMessage = document.getElementById('thank-you-message');
+    const form = document.getElementById("contact-form");
+    const thankYouMessage = document.getElementById("thank-you-message");
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault(); // جلوگیری از بارگذاری مجدد
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-      // ارسال فرم با AJAX
       const formData = new FormData(form);
       fetch(form.action, {
-        method: 'POST',
+        method: "POST",
         body: formData,
         headers: {
-          'Accept': 'application/json'
-        }
-      }).then(response => {
-        if (response.ok) {
-          form.style.display = 'none'; // مخفی کردن فرم
-          thankYouMessage.style.display = 'block'; // نمایش پیام
-        } else {
-          alert("There was an error. Please try again.");
-        }
-      }).catch(error => {
-        alert("An error occurred. Please check your internet.");
-      });
+          Accept: "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            form.style.display = "none";
+            thankYouMessage.style.display = "block";
+          } else {
+            alert("There was an error. Please try again.");
+          }
+        })
+        .catch(() => {
+          alert("An error occurred. Please check your internet.");
+        });
     });
   </script>
 </body>
 </html>
+
 
