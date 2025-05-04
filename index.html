@@ -2,15 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Contact Form</title>
+  <title>Contact Me</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f4f4f4;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    h2 {
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
   <h2>Contact Me</h2>
-  <form action="https://formsubmit.co/mosindeutsch@gmail.com" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required><br><br>
-    <input type="email" name="email" placeholder="Your Email" required><br><br>
-    <textarea name="message" placeholder="Your Message" required></textarea><br><br>
-    <button type="submit">Send</button>
+  <form action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
+    <!-- برای جلوگیری از اسپم -->
+    <input type="hidden" name="_captcha" value="false">
+    
+    <!-- بعد از ارسال، به این صفحه هدایت شود -->
+    <input type="hidden" name="_next" value="https://thankyou-page.com">
+
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
   </form>
 </body>
 </html>
+
